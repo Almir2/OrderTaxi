@@ -1,0 +1,26 @@
+﻿@model ModelInfoViewModel
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@using (Html.BeginForm("Save", "Model", FormMethod.Post, new { @class = "form-horizontal" }))
+{
+    if (!ViewData.ModelState.IsValid)
+    {
+        <div class="form-group">
+            @Html.ValidationSummary(false, "", new { @class = "col-md-4 col-md-offset-4 alert alert-danger" })
+        </div>
+    }
+    <h1 class="page-header">@ViewBag.Title</h1>
+    <div class="form-group row">
+        @Html.HiddenFor(m => m.Id)
+        @Html.LabelFor(m => m.Name, new { @class = "control-label" })
+        @Html.TextBoxFor(m => m.Name, new { @class = "form-control input-md " })
+        @Html.HiddenFor(m => m.BrandId)
+    </div>
+    <div class="form-group media-right">
+        <input type="submit" class="btn btn-success btn-sm" value="Сохранить" />
+    </div>
+}
+
+

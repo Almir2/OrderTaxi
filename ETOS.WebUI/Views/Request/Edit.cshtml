@@ -1,0 +1,111 @@
+﻿@model ETOS.WebUI.ViewModels.RequestsViewModels.CreateRequestModel
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <title>Создание заявки</title>
+</head>
+<body>
+
+
+    </ul>
+    <br />
+    <div>
+        @using (Html.BeginForm())
+        {
+            //   @Html.AntiForgeryToken()
+            // @Html.ValidationSummary()
+
+
+            <table class="table">
+                <tr>
+                    <td align="right">
+                        Дата время отправления:
+                    </td>
+                    <td align="left">
+                        @Html.TextBoxFor(a => a.request.DepartureDateTime, new { @class = "form -control", style = "width: 200px;", type = "datetime", @Value = DateTime.Now })
+                    </td>
+                </tr>
+                <tr>
+                    <td align="right">
+                        Откуда:
+                    </td>
+                    <td align="left">
+                        @Html.DropDownListFor(a => a.request.DeparturePointId, Model.POIList as SelectList, "Выберите пункт отправления", new { @class = "form -control", style = "width: 200px;" })
+                    </td>
+                    <td>
+                        @Html.TextBoxFor(a => a.request.DepartureAddress, new { @class = "form-control", style = "width: 200px; text-align:center" })
+                    </td>
+                    <td>
+                  @*      @Html.CheckBox("request.ManualDeparturePoint", Model.request.ManualDeparturePoint)*@
+                        <label>Использовать введеный адрес</label>
+                    </td>
+                </tr>
+                <tr>
+                    <td align="right">
+                        Куда:
+                    </td>
+                    <td align="left">
+                        @Html.DropDownListFor(a => a.request.DestinationPointId, Model.POIList, "Выберите пункт назначения", new { @class = "form-control", style = "width: 200px;" })
+                    </td>
+                    <td>
+                        @Html.TextBoxFor(a => a.request.DestinationAddress, new { @class = "form-control", style = "width: 200px; text-align:center" })
+                    </td>
+                    <td>
+                   @*     @Html.CheckBox("request.ManualDestinationPoint", Model.request.ManualDestinationPoint)*@
+                        <label>Использовать введеный адрес</label>
+                    </td>
+                </tr>
+                <tr>
+                    <td align="right">
+                        Наличие багажа:
+                    </td>
+                    <td align="left">
+                        @Html.CheckBox("request.HasBaggage", Model.request.HasBaggage)
+                    </td>
+                </tr>
+                <tr>
+                    <td align="right">
+                        Комментарий к поездке:
+                    </td>
+                    <td align="left">
+                        @Html.TextBox("request.Comment", Model.request.Comment)
+                    </td>
+                </tr>
+                <tr>
+                <tr>
+                    <td align="right"></td>
+                    <td>
+                        <input type="submit" value="Создать" class="form-control" style="width: 200px" />
+                    </td>
+                </tr>
+            </table>
+        }
+    </div>
+
+
+    <div>
+        <table>
+            @if (Model.errors != null)
+            {
+                foreach (var error in Model.errors)
+                {
+
+                    <tr>
+                        <td>
+                            @error
+                        </td>
+                    </tr>
+
+                }
+            }
+        </table>
+    </div>
+    <script src="~/Scripts/jquery-1.10.2.min.js"></script>
+    <script src="~/Scripts/bootstrap.min.js"></script>
+</body>
+</html>

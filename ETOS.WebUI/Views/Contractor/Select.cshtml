@@ -1,0 +1,72 @@
+﻿@model ContractorViewModel
+@{
+    ViewBag.Title = "Поиск и назначение подрядчика";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+    <h2>Подходящие варианты:</h2>
+    <div>
+        <table class="table">
+            <tr>
+                <td align="right">Откуда:</td>
+                <td align="left">@Model.DepartureAddress</td>
+            </tr>
+            <tr>
+                <td align="right">Куда:</td>
+                <td align="left">@Model.DestinationAddress</td>
+            </tr>
+            <tr>
+                <td align="right">Расстояние:</td>
+                <td align="left">@Model.Mileage км</td>
+            </tr>
+        </table>
+    </div>
+    <br />
+
+    @if (Model.errors.Count == 0)
+    {
+        using (Html.BeginForm("Select", "Contractor", FormMethod.Post))
+        {
+            <table class="table">
+                <tbody>
+                    <tr>
+                        <td align="center">Название такси</td>
+                        <td align="center">Телефон</td>
+                        <td align="center">Цена за 1 км</td>
+                        <td align="center">Итоговая стоимость поездки</td>
+                        <td align="center">Выбор</td>
+                    </tr>
+
+                    @foreach (var contractor in Model.contractors)
+                    {
+                        <tr>
+                            <td align="center">@contractor.Name</td>
+                            <td align="center">@contractor.Phone</td>
+                            <td align="center">@contractor.Tariff</td>
+                            <td align="center">@contractor.TotalPrice руб</td>
+                            <td>                             
+                                <input type="radio" value="@contractor.Id" name="SelectedContractorId" />
+                            </td>
+                        </tr>
+                    }
+                <tbody>
+            </table>
+            <input type="hidden" value="@Model.RequestId" name="requestId" />
+            <div class="form-group">
+                <div>
+                    <input type="text" class="areaText" value="Цвет авто: Розовый, Модель: БЕЛАЗ 7555, Номер авто: о321па" name="Comment" width="600"/><br /><br />
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-md-10">
+                    <input type="submit" value="Выбрать" />
+                </div>
+            </div>
+        }
+    }
+    else
+    {
+        foreach (var error in Model.errors)
+        {
+            <div class="alert alert-danger"> @error </div><br />
+        }
+    }

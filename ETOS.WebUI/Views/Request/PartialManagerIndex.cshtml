@@ -1,0 +1,112 @@
+﻿@model RequestsViewModels.RequestIndexViewModel
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@section styles
+{
+    @Styles.Render("~/Content/css/pagedList")
+}
+<div class="row">
+
+    <div>
+        <form action="/Request/PartialManagerIndex" method="get" class="form-inline filter-form">
+            <div class="form-group">
+                Введите фамилию:
+                <input type="text" class="form-control" name="AuthorLastName" value="" />
+            </div>
+            <div class="form-group">
+                Введите имя:
+                <input type="text" class="form-control" name="AuthorFirstName" value="" />
+            </div>
+
+
+            <div class="form-group">
+                Введите откуда:
+                <input type="text" class="form-control" name="DepartureAddress" value="" />
+            </div>
+
+
+            <div class="form-group to">
+                Введите куда:
+                <input type="text" class="form-control" name="DestinationAddress" value="" />
+            </div>
+
+
+            <input class="btn btn-success filtering" type="submit" value="Отфильтровать" />
+        </form>
+    </div>
+    <div>
+        <form action="/Request/PartialManagerIndex" method="get">
+            <div><input name="cleanFilter" value="true" type="hidden" /></div>
+            <input class="btn btn-danger" type="submit" value="Очистить фильтр" />
+        </form>
+    </div>
+
+    @if (Model != null)
+    {
+        <table cellpadding="0" cellspacing="0" border="0" id="example" class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Номер заявки</th>
+                    <th>Создатель заявки</th>
+                    <th>Дата время отправки</th>
+                    <th>Точка отправки</th>
+                    <th>Точка прибытия</th>
+                    <th>Наличие багажа</th>
+                    <th>Статус</th>
+					<th>Комментарий</th>
+                    <th></th>                    
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var request in Model.Requests)
+                {
+                    if (request.DepartureAddress != "" || request.DestinationAddress != "")
+                    {
+                        <tr>
+                            <td>@request.Id</td>
+                            <td>@request.AuthorLastName  @request.AuthorFirstName</td>
+                            <td>@request.DepartureDateTime</td>
+                            <td>@request.DeparturePointName</td>
+                            <td>@request.DestinationPointName</td>
+                            <td>
+                                @if (request.HasBaggage)
+                                {
+                                    <label>Есть </label>}
+                                else
+                                {
+                                    <label>Отсутствует</label>}
+                            </td>
+
+                            <td>@request.StatusName</td>
+                            <td>@request.Comment</td>
+
+                            <td>
+                                @if (request.StatusId == 1)
+                                {
+                                    //1 - на согласовании
+                                    @Html.ActionLink("Обработать", "ManagerHandleRequest", "Request", new { id = request.Id }, null)
+                                }
+                            </td>
+
+                        </tr>}
+                }
+            </tbody>
+        </table>
+    }
+
+    Страница @(Model.Requests.PageCount < Model.Requests.PageNumber ? 0 : Model.Requests.PageNumber) из @Model.Requests.PageCount
+
+    @Html.PagedListPager(Model.Requests, page => Url.Action("PartialManagerIndex", new { page }))
+</div>
+
+
+@section Scripts
+{
+    @Scripts.Render("~/bundles/jquery");
+    @Scripts.Render("~/bundles/bootstrap");
+}
+
+

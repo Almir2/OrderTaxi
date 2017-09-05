@@ -1,0 +1,5 @@
+<#+
+	public const string mainConnectionString = @"data source=localhost;initial catalog=ETOSDatabase;Integrated Security=True;MultipleActiveResultSets=True";
+
+	public const string defaultNamespace = "ETOS.DAL.Enums";
+#>

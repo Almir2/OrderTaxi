@@ -1,0 +1,46 @@
+﻿@model BrandDetailsViewModel
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.Title = $"Информация о марке автомобиля: { Model.Brand.Name }";
+}
+<div class="row">
+    <div class="page-header">
+        <h1>Информация о марке автомобиля: @Model.Brand.Name</h1>
+    </div>
+    <h2>Модельный ряд</h2>
+    <table class="table table-responsive table-striped">
+        <thead>
+            <tr>
+                <th>Код модели</th>
+                <th>Название модели</th>
+                <th>Действия</th>
+            </tr>
+        </thead>
+        <tbody>
+            @if (Model.BrandedModels.Count() == 0)
+            {
+                <tr>
+                    <td colspan="3" class="text-center">Модели отсутствуют</td>
+                </tr>}
+            else
+            {
+                foreach (var brandedModel in Model.BrandedModels)
+                {
+                    <tr>
+                        <td>@brandedModel.Id</td>
+                        <td>@brandedModel.Name</td>
+                        <td hidden ="hidden">@brandedModel.BrandId</td>
+                        <td>
+                            @Html.ActionLink("Редактировать", "Edit", "Model", new { @brandedModelId = brandedModel.Id }, new { @class = "btn btn-primary btn-xs" })
+                            @Html.ActionLink("Удалить", "Remove", "Model", new { @brandId = brandedModel.BrandId, brandedModelId = brandedModel.Id }, new { @class = "btn btn-danger btn-xs" })
+                        </td>
+                    </tr>
+                }
+            }
+        </tbody>
+    </table>
+    @Html.ActionLink("Добавить модель автомобиля", "Create", "Model", new { @brandId = Model.Brand.Id }, new { @class = "btn btn-primary" })
+</div>
+
+
+

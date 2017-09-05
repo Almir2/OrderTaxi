@@ -1,0 +1,8 @@
+﻿CREATE TABLE [dbo].[Contractors]
+(
+	[Id]		INT					NOT NULL	IDENTITY(1, 1)	PRIMARY KEY,
+	[Name]		NVARCHAR(100)		NOT NULL, 
+	[Phone]		NVARCHAR(16)		NOT NULL, 
+	[Tariff]	DECIMAL(7, 2)		NOT NULL, 
+	[UserId]	NVARCHAR(128)		NULL
+)

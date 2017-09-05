@@ -1,0 +1,12 @@
+C:\Users\Almir_Abubekerov\Desktop\ETOS\Project\sources\ETOS\ETOS.WSL\bin\ETOS.WSL.dll.config
+C:\Users\Almir_Abubekerov\Desktop\ETOS\Project\sources\ETOS\ETOS.WSL\bin\ETOS.WSL.dll
+C:\Users\Almir_Abubekerov\Desktop\ETOS\Project\sources\ETOS\ETOS.WSL\bin\ETOS.WSL.pdb
+C:\Users\Almir_Abubekerov\Desktop\ETOS\Project\sources\ETOS\ETOS.WSL\obj\Debug\ETOS.WSL.csprojResolveAssemblyReference.cache
+C:\Users\Almir_Abubekerov\Desktop\ETOS\Project\sources\ETOS\ETOS.WSL\obj\Debug\ETOS.WSL.dll
+C:\Users\Almir_Abubekerov\Desktop\ETOS\Project\sources\ETOS\ETOS.WSL\obj\Debug\ETOS.WSL.pdb
+C:\Users\Almir_Abubekerov\Desktop\OrderTaxi\ETOS.WSL\bin\ETOS.WSL.dll.config
+C:\Users\Almir_Abubekerov\Desktop\OrderTaxi\ETOS.WSL\bin\ETOS.WSL.dll
+C:\Users\Almir_Abubekerov\Desktop\OrderTaxi\ETOS.WSL\bin\ETOS.WSL.pdb
+C:\Users\Almir_Abubekerov\Desktop\OrderTaxi\ETOS.WSL\obj\Debug\ETOS.WSL.csprojResolveAssemblyReference.cache
+C:\Users\Almir_Abubekerov\Desktop\OrderTaxi\ETOS.WSL\obj\Debug\ETOS.WSL.dll
+C:\Users\Almir_Abubekerov\Desktop\OrderTaxi\ETOS.WSL\obj\Debug\ETOS.WSL.pdb

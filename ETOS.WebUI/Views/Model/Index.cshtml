@@ -1,0 +1,45 @@
+﻿@model BrandListViewModel
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.Title = "Перечень марок автомобилей";
+}
+<div class="row">
+    <div class="page-header">
+        <h1>Перечень марок автомобилей</h1>
+    </div>
+    <table class="table table-responsive table-striped">
+        <thead>
+            <tr>
+                <th>Код марки автомобиля</th>
+                <th>Название марки автомобиля</th>
+                <th>Действия</th>
+            </tr>
+        </thead>
+        <tbody>
+            @if (Model.Brands.Count() == 0)
+            {
+                <tr>
+                    <td colspan="3" class="text-center">Марки автомобилей отсутствуют</td>
+                </tr>}
+            else
+            {
+                foreach (var brand in Model.Brands)
+                {
+                    <tr>
+                        <td>@brand.Id</td>
+                        <td>@brand.Name</td>
+                        <td>
+                            @Html.ActionLink("Подробнее", "Details", new { @brandId = brand.Id }, new { @class = "btn btn-info btn-xs" })
+                            @Html.ActionLink("Редактировать", "Edit", new { @brandId = brand.Id }, new { @class = "btn btn-primary btn-xs" })
+                            @Html.ActionLink("Удалить", "Remove", new { @brandId = brand.Id }, new { @class = "btn btn-danger btn-xs" })
+                        </td>
+                    </tr>
+}
+            }
+        </tbody>
+    </table>
+    @Html.ActionLink("Добавить марку автомобиля", "Create", null, new { @class = "btn btn-primary" })
+</div>
+
+
+

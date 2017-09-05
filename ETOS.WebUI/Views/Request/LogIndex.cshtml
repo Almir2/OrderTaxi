@@ -1,0 +1,77 @@
+﻿@model PagedList.IPagedList<ETOS.Core.DTO.DtoLog>
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@section styles
+{
+    @Styles.Render("~/Content/css/pagedList")
+}
+
+
+<div class="row">
+    <div>
+        <form action="/Request/LogIndex" method="get" class="form-inline filter-form">
+            <div class="form-group">
+                Выберите дату:
+                <input type="date" class="datepicker" name="CreationDate" value="" />
+            </div>
+            <div class="form-group">
+                Введите фамилию:
+                <div>
+                    <input type="text" class="form-control" name="CreatorLastName" value="" />
+                </div>
+            </div>
+            <div class="form-group">
+                Введите имя:
+                <div>
+                    <input type="text" class="form-control" name="CreatorFirstName" value="" />
+                </div>
+            </div>
+                <input class="btn btn-success filtering" type="submit" value="Отфильтровать" />
+        </form>
+    </div>
+
+    <div>
+        <form action="/Request/Index" method="get">
+            <div><input name="cleanFilter" value="true" type="hidden" /></div>
+            <input class="btn btn-danger" type="submit" value="Очистить фильтр" />
+        </form>
+    </div>
+
+    <table cellpadding="0" cellspacing="0" border="0" id="example" class="table table-striped">
+
+        <thead>
+            <tr>
+                <th>Имя автора</th>
+                <th>Дата создания заявки</th>
+                <th>Километраж заявки</th>
+                <th>Цена заявки</th>
+                <th>Ip адрес создателя</th>
+                <th>Браузер создателя</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+
+            @foreach (var log in Model)
+            {
+                <tr>
+                    <td>@log.CreatorFirstName @log.CreatorLastName</td>
+                    <td><div class="date">@log.CreationDataTime</div></td>
+                    <td class="center">@log.RequestMile </td>
+                    <td class="center">@log.RequestPrice </td>
+                    <td class="center">@log.IpAddress</td>
+                    <td class="center status">@log.BrowserName</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
+
+
+        Страница @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) из @Model.PageCount
+
+        @Html.PagedListPager(Model, page => Url.Action("LogIndex", new { page }))
+</div>

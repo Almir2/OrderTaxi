@@ -1,0 +1,109 @@
+﻿
+@model ETOS.WebUI.ViewModels.RequestsViewModels.RequestHandleViewModel
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <title>Руководитель</title>
+</head>
+<body>
+
+
+    <table>
+        <tr>
+            <td>Время создания заявки</td>
+            <td>@Model.Request.CreationDateTime</td>
+        </tr>
+        <tr>
+            <td>ФИО</td>
+            <td>@Model.Request.AuthorLastName  @Model.Request.AuthorFirstName</td>
+        </tr>
+        <tr>
+            <td>Откуда</td>
+            <td>@Model.Request.DeparturePointName</td>
+        </tr>
+        <tr>
+            <td>Куда</td>
+            <td>@Model.Request.DestinationPointName</td>
+        </tr>
+        <tr>
+            <td>Время отправки</td>
+            <td>@Model.Request.DepartureDateTime</td>
+        </tr>
+        <tr>
+            <td>Багаж</td>
+            <td>
+			@if (Model.Request.HasBaggage)
+			{
+				<label>Есть</label>
+			}
+			else
+			{
+				<label>Отсутствует</label>
+			}
+			</td>
+        </tr>
+        <tr>
+            <td>Комментарий</td>
+            <td>@Model.Request.Comment</td>
+        </tr>
+        <tr>
+            <td>Расстояние</td>
+            <td>@Model.Request.Mileage</td>
+        </tr>
+        <tr>
+			@if (Model.Request.Price > 0)
+			{
+				<td align="right">
+					Стоимость:
+				</td>
+				<td align="left">
+					@Model.Request.Price <label>руб</label>
+				</td>
+			}
+        </tr>
+        <tr>
+            <td>Статус</td>
+            <td>@Model.Request.StatusName</td>
+        </tr>
+    </table>
+
+    <br /><br />
+    <div>Действия</div>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-2 col-md-10">
+                @using (Html.BeginForm("ManagerFinishSuccess", "Request", FormMethod.Post))
+                {
+                    <br /><br />
+                    @Html.HiddenFor(m => m.Request.Id, Model.Request.Id)
+                    @Html.HiddenFor(m => m.Request.StatusId, Model.Request.StatusId)
+                    <br /><br />
+                            <input type="submit" value="Подтвердить" class="btn btn-success" style="width: 200px" />
+                }
+            </div>
+            <div class="col-lg-2 col-lg-offset-1 col-md-10">
+                @using (Html.BeginForm("ManagerReject", "Request", FormMethod.Post))
+                {
+                    <br /><br />
+
+                    <br /><br />
+                            @Html.HiddenFor(m => m.Request.Id, Model.Request.Id)
+                            @Html.HiddenFor(m => m.Request.StatusId, Model.Request.StatusId)
+                            <input type="submit" value="Отклонить" class="btn btn-danger" style="width: 200px" />
+                            <br /><br />
+                            <div>Причина отклонения</div>
+                            @Html.TextBoxFor(a => a.Request.Comment, new { @class = "form-control", style = "width: 200px; text-align:center" })
+                }
+            </div>
+        </div>
+    </div>
+
+    <script src="~/Scripts/jquery-1.10.2.min.js"></script>
+    <script src="~/Scripts/bootstrap.min.js"></script>
+</body>
+</html>

@@ -1,0 +1,116 @@
+﻿body {
+	padding-top: 50px;
+	padding-bottom: 20px;
+}
+
+.body-content {
+	padding-left: 15px;
+	padding-right: 15px;
+}
+
+
+select {
+	max-width: 280px;
+}
+
+.customCheckbox
+{
+	align-self:center;
+	width: 20px;
+    height: 34px;
+}
+
+.validation-summary-errors ul {
+	list-style: none;
+	padding: 0px;
+	color: red;
+	font-weight: bold;
+}
+
+.Absolute-Center {
+	margin: auto;
+	position: absolute;
+	top: 0;
+	left: 0;
+	bottom: 0;
+	right: 0;
+}
+
+label
+{
+	font-weight: normal;
+}
+
+.datepicker {
+	width: 100%;	
+	text-align: center;
+    display: block;
+    width: 100%;    
+    padding: 6px 12px;
+    font-size: 14px;
+    line-height: 1.42857143;
+    color: #555;
+    background-color: #fff;
+    background-image: none;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+
+}
+
+.Absolute-Center.is-Responsive {
+	width: 50%;
+	height: 50%;
+	min-width: 200px;
+	max-width: 400px;
+	padding: 40px;
+}
+
+/*==============Ребят, вот тут уже вносим наши стили================================*/
+
+.areaText
+{
+	width: 800px;
+}
+
+.filter-form {
+	margin-top: 70px;
+	margin-bottom: 50px;
+}
+
+	.filter-form input[type="text"] {
+		width: 100px;
+	}
+
+.to {
+	margin-left: 0px !important;
+}
+
+	.to input {
+		margin-top: 0px;
+	}
+
+
+
+.form-group:first-child {
+	margin-left: 0px;
+}
+
+.form-group {
+	margin-left: 20px;
+}
+
+table {
+	margin-top: 20px;
+}
+
+	table thead th {
+		background-color: #9faab1;
+	}
+
+.request-anon input {
+	clear: both;
+}
+
+.back-btn {
+	margin-top: 20px;
+}

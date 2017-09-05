@@ -1,0 +1,24 @@
+﻿@model ApplicationUserViewModel
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>View</title>
+</head>
+<body>
+    <div>
+        @using (Html.BeginForm("AddUser", "Account", FormMethod.Post, new { @class = "form-horizontal form-enter" }))
+        {
+            @Html.TextBoxFor(m => m.Email);
+            @Html.TextBoxFor(m => m.Password);
+
+            <input type="submit" id="singlebutton" value="Вход" class="btn btn-primary login-btn" />
+        }
+    </div>
+</body>
+</html>

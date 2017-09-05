@@ -1,0 +1,15 @@
+﻿
+@if (HttpContext.Current.User.IsInRole("Секретарь"))
+{
+    { Html.RenderPartial("PartialSecretaryIndex"); }
+}
+
+@if (HttpContext.Current.User.IsInRole("Пользователь"))
+{
+    { Html.RenderPartial("PartialRequestIndex"); }
+}
+
+@if (HttpContext.Current.User.IsInRole("Менеджер"))
+{
+    { Html.RenderPartial("PartialManagerIndex"); }
+}

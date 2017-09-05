@@ -1,0 +1,127 @@
+﻿@model RequestsViewModels.EditRequestModel
+@{
+    ViewBag.Title = "DetailsOfRequest";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Details</title>
+</head>
+<body>
+    <h2><div>Заявка № @Model.Request.Id</div> </h2>
+    <div>
+        <table class="table">
+            <tr>
+                <td align="right">
+                    Фамилия автора:
+                </td>
+                <td align="left">
+                    @Model.Request.AuthorFirstName
+                </td>
+            </tr>
+            <tr>
+                <td align="right">
+                    Имя автора:
+                </td>
+                <td align="left">
+                    @Model.Request.AuthorLastName
+                </td>
+            </tr>
+            <tr>
+                <td align="right">
+                    Откуда:
+                </td>
+                <td align="left">
+                    @Model.Request.DeparturePointName
+                </td>
+            </tr>
+            <tr>
+                <td align="right">
+                    Куда:
+                </td>
+                <td align="left">
+                    @Model.Request.DestinationPointName
+                </td>
+            </tr>
+            <tr>
+                <td align="right">
+                    Дата отправления:
+                </td>
+                <td align="left">
+                    @Model.Request.DepartureDateTime
+                </td>
+            </tr>
+            <tr>
+                <td align="right">
+                    Дата создания:
+                </td>
+                <td align="left">
+                    @Model.Request.CreationDateTime
+                </td>
+            </tr>
+            <tr>
+                <td align="right">
+                    Наличие багажа:
+                </td>
+                <td align="left">
+                    @if (Model.Request.HasBaggage)
+					{
+                        <label>Есть</label>
+                    }
+                    else
+                    {
+                        <label>Отсутствует</label>
+                    }
+                </td>
+            </tr>
+            <tr>
+                <td align="right">
+                    Комментарии:
+                </td>
+                <td align="left">
+                    @Model.Request.Comment
+                </td>
+            </tr>
+            <tr>
+                <td align="right">
+                    Расстояние:
+                </td>
+                <td align="left">
+                   @if (Model.Request.Mileage > 0)
+					{
+						@Model.Request.Mileage <label>км</label>
+					}
+					else
+					{
+						<label>менее 1 км</label>
+					}
+                </td>
+            </tr>
+            <tr>
+				@if (Model.Request.Price > 0)
+				{
+                <td align="right">
+                    Стоимость:
+                </td>
+                <td align="left">                  
+						@Model.Request.Price <label>руб</label>					
+                </td>
+				}				
+            </tr>
+            <tr>
+                <td align="right">
+                    Статус:
+                </td>
+                <td align="left">
+                    @Model.Request.StatusName
+                </td>
+            </tr>
+        </table>
+    </div>
+    <br />
+</body>
+</html>
